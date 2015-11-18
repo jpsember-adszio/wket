@@ -11,7 +11,15 @@ end
 
 desc "Deploy project to jetty; press ctrl-c to interrupt"
 task :deploy do
-  sy('mvn jetty:run')
+
+  # Stop previous jetty process, if there is one
+  kill_existing
+
+  # Start jetty in background
+  job1 = fork do
+    exec "mvn jetty:run"
+  end
+  Process.detach(job1)
 end
 
 # Make a system call; raise SystemCallException if an error occurs
@@ -55,4 +63,14 @@ def sy(cmd, verbose=true)
     raise SystemCallException,msg
   end
   std_output
+end
+
+def kill_existing
+  output,success = scall('ps  aux | grep [j]etty',false)
+  return if !success
+  lines = output.split("\n")
+  die "unexpected output:\n#{output}" if lines.length > 1
+  return if lines.empty?
+  pid = lines[0].split()[1]
+  scall("kill #{pid}")
 end
