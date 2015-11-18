@@ -1,6 +1,17 @@
-## Creating the project
+## Running the project
 
-From the repository's root directory, type:
+From the repository root directory, type
+```
+cd wket
+rake
+```
+
+Note: you must have the Ruby gem 'js_base' installed.
+See `https://github.com/jpsember/js_base`
+
+## How project was created
+
+From the repository's root directory, I typed:
 ```
 mvn archetype:generate \
    -DarchetypeGroupId=org.apache.wicket \
