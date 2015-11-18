@@ -2,7 +2,7 @@
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" configDebug="true">
   <Appenders>
     <Console name="CONSOLE" target="SYSTEM_OUT">
-      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+      <PatternLayout pattern="[%t] %level{ERROR=Error, length=1} %c{1} - %msg%n"/>
     </Console>
   </Appenders>
   <Loggers>
