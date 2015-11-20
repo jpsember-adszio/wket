@@ -22,3 +22,7 @@ mvn archetype:generate \
    -DarchetypeRepository=https://repository.apache.org/ \
    -DinteractiveMode=false
 ```
+
+## Useful links
+
+[wicket-dos-and-donts](http://blog.trifork.com/2009/09/16/wicket-dos-and-donts/)
