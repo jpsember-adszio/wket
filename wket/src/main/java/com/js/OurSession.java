@@ -6,8 +6,6 @@ import org.apache.wicket.request.Request;
 
 public class OurSession extends WebSession {
 
-  private static final int MAX_CONSOLE_ROWS = 8;
-
   protected OurSession(Request request) {
     super(request);
   }
@@ -17,7 +15,7 @@ public class OurSession extends WebSession {
   }
 
   public String getLog() {
-    return mNotebook.toString();
+    return mConsoleText.toString();
   }
 
   public static void pr(Object message) {
@@ -25,16 +23,17 @@ public class OurSession extends WebSession {
   }
 
   public void log(Object message) {
+    final int MAX_CONSOLE_ROWS = 8;
     String str = message.toString().trim();
-    String[] rows = mNotebook.toString().split("\n");
+    String[] rows = mConsoleText.toString().split("\n");
     int cursor = Math.max(0, rows.length - MAX_CONSOLE_ROWS);
-    mNotebook.setLength(0);
+    mConsoleText.setLength(0);
     for (; cursor < rows.length; cursor++) {
-      mNotebook.append(rows[cursor]);
-      mNotebook.append("\n");
+      mConsoleText.append(rows[cursor]);
+      mConsoleText.append("\n");
     }
-    mNotebook.append(str);
+    mConsoleText.append(str);
   }
 
-  private StringBuilder mNotebook = new StringBuilder();
+  private StringBuilder mConsoleText = new StringBuilder();
 }
