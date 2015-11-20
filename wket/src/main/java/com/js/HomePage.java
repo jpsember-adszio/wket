@@ -10,14 +10,11 @@ public class HomePage extends WebPage {
 
     add(new LoginPanel("panel"));
     add(new ConsolePanel("console"));
-    
+
   }
 
   public OurSession getOurSession() {
     return (OurSession) getSession();
   }
 
-  public StringBuilder getNotebook() {
-    return getOurSession().getNotebook();
-  }
 }

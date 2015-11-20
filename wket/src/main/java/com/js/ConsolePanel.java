@@ -13,8 +13,7 @@ public class ConsolePanel extends Panel {
       @Override
       public String getObject() {
         OurSession session = OurSession.get();
-        StringBuilder notebook = session.getNotebook();
-        return notebook.toString();
+        return session.getLog();
       }
     }));
   }

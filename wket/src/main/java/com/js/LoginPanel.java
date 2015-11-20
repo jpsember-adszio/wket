@@ -1,5 +1,7 @@
 package com.js;
 
+import static com.js.OurSession.*;
+
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -12,9 +14,7 @@ public class LoginPanel extends Panel {
     Form form = new Form("form_login") {
       @Override
       protected void onSubmit() {
-        OurSession session = OurSession.get();
-        StringBuilder notebook = session.getNotebook();
-        notebook.append("Form submitted.\n");
+        pr("Form submitted.");
       }
     };
     add(form);
