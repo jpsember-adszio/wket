@@ -12,15 +12,10 @@ public class ConsolePanel extends Panel {
     add(new MultiLineLabel("text", new Model<String>() {
       @Override
       public String getObject() {
-        
-        OurSession session =  (OurSession)OurSession.get();
-        // NOT THREAD SAFE! Investigate later.
+        OurSession session = OurSession.get();
         StringBuilder notebook = session.getNotebook();
-        notebook.append("\n "+(counter++)+": ");
         return notebook.toString();
       }
-
-      private int counter;
     }));
   }
 }
