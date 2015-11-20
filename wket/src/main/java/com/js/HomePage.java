@@ -9,6 +9,8 @@ public class HomePage extends WebPage {
     super(parameters);
 
     add(new LoginPanel("panel"));
+    add(new ConsolePanel("console"));
+    
   }
 
   public OurSession getOurSession() {
