@@ -2,14 +2,25 @@ package com.js;
 
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.html.basic.MultiLineLabel;
+import org.apache.wicket.model.Model;
 
 public class ConsolePanel extends Panel {
 
   public ConsolePanel(String id) {
     super(id);
 
-    String text = "\n...console text here...\n";
+    add(new MultiLineLabel("text", new Model<String>() {
+      @Override
+      public String getObject() {
+        
+        OurSession session =  (OurSession)OurSession.get();
+        // NOT THREAD SAFE! Investigate later.
+        StringBuilder notebook = session.getNotebook();
+        notebook.append("\n "+(counter++)+": ");
+        return notebook.toString();
+      }
 
-    add(new MultiLineLabel("text", text));
+      private int counter;
+    }));
   }
 }

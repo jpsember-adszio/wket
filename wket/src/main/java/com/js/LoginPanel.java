@@ -12,7 +12,10 @@ public class LoginPanel extends Panel {
     Form form = new Form("form_login") {
       @Override
       protected void onSubmit() {
-        System.out.println("form was submitted!");
+        OurSession session = (OurSession) OurSession.get();
+        // NOT THREAD SAFE! Investigate later.
+        StringBuilder notebook = session.getNotebook();
+        notebook.append("Form submitted.\n");
       }
     };
     add(form);
